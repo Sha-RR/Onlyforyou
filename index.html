@@ -1,35 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Love Letter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffe6e6;
-            text-align: center;
-            padding: 50px;
-        }
-        .letter {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Love Story</title>
+  <style>
+    body {
+      margin: 0;
+      background: skyblue url('https://i.imgur.com/8Km9tLL.png') repeat; /* heart background */
+      background-size: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+    }
+    #startBtn {
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      background-color: red;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    #startBtn:hover {
+      transform: scale(1.1);
+    }
+
+    .book {
+      position: absolute;
+      width: 600px;
+      height: 400px;
+      perspective: 1000px;
+      display: none;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+      transform-origin: left;
+      transition: transform 1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      font-size: 22px;
+    }
+
+    .flipped {
+      transform: rotateY(-180deg);
+    }
+
+    .page:last-child {
+      background: #ffe4e1;
+      font-size: 20px;
+      flex-direction: column;
+    }
+
+    .accept-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="letter">
-        <h1>My Dearest [Her Name],</h1>
-        <p>
-            From the moment we met, my life has been filled with joy and love. You are my everything, and I cherish every moment we share together.
-        </p>
-        <p>
-            Forever yours,<br>
-            [Your Name]
-        </p>
-    </div>
+  <button id="startBtn">Open My Heart</button>
+
+  <div class="book" id="book">
+    <div class="page" onclick="flipPage(this)">I have waited so long for you, and I will wait as long as it takes. 💌</div>
+    <div class="page" onclick="flipPage(this)">You are so beautiful. I adore every little thing about you. 💖</div>
+    <div class="page" onclick="flipPage(this)">I promise to never leave your side, no matter what. 🫶</div>
+    <div class="page" onclick="flipPage(this)">Yours truly,<br><strong>Shaiksha</strong><br><br>Will you accept my love?<br><button class="accept-btn" onclick="accept love(event)">Yes, I Accept ❤️</button></div>
+    <div class="page" id="finalPage">I LOVE YOU. 💞 Forever and Always.</div>
+  </div>
+
+  <script>
+    const book = document.getElementById('book');
+    const pages = document.querySelectorAll('.page');
+    const startBtn = document.getElementById('startBtn');
+
+    let currentPage = 0;
+
+    function flipPage(page) {
+      if (currentPage < pages.length - 1) {
+        page.classList.add('flipped');
+        currentPage++;
+      }
+    }
+
+    function acceptLove(event) {
+      event.stopPropagation();
+      pages[currentPage].classList.add('flipped');
+      currentPage++;
+    }
+
+    startBtn.addEventListener('click', () => {
+      startBtn.style.display = 'none';
+      book.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
