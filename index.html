@@ -1,117 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Love Story</title>
+  <meta charset="UTF-8">
+  <title>Rose Love Page</title>
   <style>
     body {
-      margin: 0;
-      background: skyblue url('https://i.imgur.com/8Km9tLL.png') repeat; /* heart background */
-      background-size: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: 'Georgia', serif;
-      overflow: hidden;
-    }
-    #startBtn {
-      padding: 20px 40px;
-      font-size: 24px;
-      border: none;
-      background-color: red;
-      color: white;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-    #startBtn:hover {
-      transform: scale(1.1);
-    }
-
-    .book {
-      position: absolute;
-      width: 600px;
-      height: 400px;
-      perspective: 1000px;
-      display: none;
-    }
-
-    .page {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      background: white;
-      border: 1px solid #ccc;
-      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-      transform-origin: left;
-      transition: transform 1s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: sans-serif;
       text-align: center;
-      padding: 20px;
-      font-size: 22px;
+      background-color: #f0f0f0;
     }
-
-    .flipped {
-      transform: rotateY(-180deg);
+    img {
+      max-width: 100%;
+      height: auto;
     }
-
-    .page:last-child {
-      background: #ffe4e1;
-      font-size: 20px;
-      flex-direction: column;
-    }
-
-    .accept-btn {
-      margin-top: 20px;
+    .btn {
       padding: 10px 20px;
-      background: green;
-      color: white;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
+    }
+    .yes-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .no-btn {
+      background-color: #f44336;
+      color: white;
+    }
+    .nav-btn {
+      background-color: #008CBA;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <button id="startBtn">Open My Heart</button>
 
-  <div class="book" id="book">
-    <div class="page" onclick="flipPage(this)">I have waited so long for you, and I will wait as long as it takes. 💌</div>
-    <div class="page" onclick="flipPage(this)">You are so beautiful. I adore every little thing about you. 💖</div>
-    <div class="page" onclick="flipPage(this)">I promise to never leave your side, no matter what. 🫶</div>
-    <div class="page" onclick="flipPage(this)">Yours truly,<br><strong>Shaiksha</strong><br><br>Will you accept my love?<br><button class="accept-btn" onclick="accept love(event)">Yes, I Accept ❤️</button></div>
-    <div class="page" id="finalPage">I LOVE YOU. 💞 Forever and Always.</div>
+  <h1>Will you be my rose 🌹?</h1>
+
+  <button class="btn yes-btn" onclick="handleYes()">Yes</button>
+  <button class="btn no-btn" onclick="handleNo()">No</button>
+
+  <div style="margin-top: 40px;">
+    <button class="btn nav-btn">Previous</button>
+    <button class="btn nav-btn">Next</button>
   </div>
 
+  <div id="result" style="margin-top: 30px;"></div>
+
   <script>
-    const book = document.getElementById('book');
-    const pages = document.querySelectorAll('.page');
-    const startBtn = document.getElementById('startBtn');
-
-    let currentPage = 0;
-
-    function flipPage(page) {
-      if (currentPage < pages.length - 1) {
-        page.classList.add('flipped');
-        currentPage++;
-      }
+    function handleYes() {
+      document.getElementById('result').innerHTML = `
+        <h2>Yay! You're as lovely as this rose 🌹</h2>
+        <img src="/mnt/data/IMG_2519.jpeg" alt="Romantic Rose">
+      `;
     }
 
-    function acceptLove(event) {
-      event.stopPropagation();
-      pages[currentPage].classList.add('flipped');
-      currentPage++;
+    function handleNo() {
+      document.getElementById('result').innerHTML = `
+        <h2>💔 Rejected... but still fabulous 😎</h2>
+        <img src="https://i.pinimg.com/originals/b3/f5/0e/b3f50e0f72d6c774edbdf01aebfcd3cd.jpg" alt="Heartbroken Meme">
+      `;
     }
-
-    startBtn.addEventListener('click', () => {
-      startBtn.style.display = 'none';
-      book.style.display = 'block';
-    });
   </script>
+
 </body>
 </html>
